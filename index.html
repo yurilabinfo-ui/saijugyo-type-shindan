@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>再授業タイプ診断｜40代女性のための あなたの伏線はどこから始まる？</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600;700&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans JP',sans-serif;background:#faf8f4;color:#2c2c2c;min-height:100vh}
+.screen{display:none;min-height:100vh}
+.screen.active{display:block}
+
+/* ======= START ======= */
+#screen-start{background:#faf8f4}
+.start-wrap{max-width:720px;margin:0 auto;padding:48px 24px 80px}
+.logo{font-family:'Noto Serif JP',serif;font-size:13px;color:#5a7a5a;letter-spacing:.15em;margin-bottom:48px}
+.start-tag{font-size:11px;letter-spacing:.2em;color:#8a9e8a;margin-bottom:20px;text-transform:uppercase}
+.start-title{font-family:'Noto Serif JP',serif;font-size:clamp(28px,6vw,44px);font-weight:600;line-height:1.4;color:#1a2e1a;margin-bottom:24px}
+.start-title span{color:#5a7a5a}
+.start-desc{font-size:15px;line-height:2;color:#555;margin-bottom:40px;max-width:520px}
+.start-meta{display:flex;gap:24px;font-size:12px;color:#8a9e8a;margin-bottom:48px;flex-wrap:wrap}
+.start-meta span{display:flex;align-items:center;gap:6px}
+.btn-start{display:inline-flex;align-items:center;gap:12px;background:#2d5a2d;color:#fff;font-size:16px;font-weight:500;padding:18px 40px;border:none;cursor:pointer;font-family:inherit;transition:all .2s;letter-spacing:.05em}
+.btn-start:hover{background:#1a3d1a;transform:translateY(-1px)}
+.btn-start svg{transition:transform .2s}
+.btn-start:hover svg{transform:translateX(4px)}
+.start-deco{position:fixed;top:-60px;right:-60px;width:280px;height:280px;border-radius:50%;background:rgba(90,122,90,.08);pointer-events:none}
+.start-deco2{position:fixed;bottom:-80px;left:-40px;width:200px;height:200px;border-radius:50%;background:rgba(212,165,116,.1);pointer-events:none}
+.type-preview{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:48px;max-width:480px}
+.type-chip{background:#fff;border:1px solid #e8e4df;padding:12px 16px;font-size:12px;color:#666;line-height:1.5}
+.type-chip strong{display:block;font-size:13px;color:#2c2c2c;margin-bottom:4px}
+
+/* ======= QUIZ ======= */
+#screen-quiz{background:#faf8f4}
+.quiz-header{padding:20px 24px 0;max-width:720px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.quiz-num{font-family:'Noto Serif JP',serif;font-size:13px;color:#8a9e8a}
+.quiz-num strong{color:#2d5a2d;font-size:18px}
+.btn-back{background:none;border:none;cursor:pointer;font-size:12px;color:#aaa;font-family:inherit;padding:4px 0}
+.btn-back:hover{color:#666}
+.progress-bar{height:2px;background:#e8e4df;margin:16px 24px 0;max-width:calc(720px - 48px);margin-left:auto;margin-right:auto}
+.progress-fill{height:100%;background:#2d5a2d;transition:width .4s ease}
+.quiz-body{max-width:720px;margin:0 auto;padding:60px 24px 80px}
+.q-label{font-size:11px;letter-spacing:.2em;color:#8a9e8a;margin-bottom:20px;text-transform:uppercase}
+.q-text{font-family:'Noto Serif JP',serif;font-size:clamp(20px,4vw,28px);font-weight:400;line-height:1.7;color:#1a2e1a;margin-bottom:12px}
+.q-hint{font-size:12px;color:#aaa;margin-bottom:48px}
+.options{display:flex;flex-direction:column;gap:12px}
+.opt-btn{text-align:left;background:#fff;border:1.5px solid #e8e4df;padding:18px 24px;cursor:pointer;font-family:inherit;font-size:15px;color:#333;line-height:1.6;transition:all .2s;position:relative}
+.opt-btn:hover{border-color:#5a7a5a;background:#f4f9f4;transform:translateX(4px)}
+.opt-btn.selected{border-color:#2d5a2d;background:#f0f7f0;color:#1a2e1a}
+.opt-btn .opt-key{display:inline-block;width:24px;height:24px;border:1.5px solid currentColor;border-radius:50%;font-size:11px;font-weight:600;text-align:center;line-height:22px;margin-right:12px;color:#aaa;transition:all .2s;flex-shrink:0}
+.opt-btn:hover .opt-key,.opt-btn.selected .opt-key{color:#2d5a2d;border-color:#2d5a2d}
+.opt-inner{display:flex;align-items:flex-start}
+
+/* ======= LOADING ======= */
+#screen-loading.active{display:flex;align-items:center;justify-content:center;background:#faf8f4}
+.loading-wrap{text-align:center;padding:40px}
+.loading-circle{width:60px;height:60px;border:2px solid #e8e4df;border-top-color:#2d5a2d;border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 32px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-txt{font-family:'Noto Serif JP',serif;font-size:16px;color:#5a7a5a;line-height:2}
+
+/* ======= RESULT ======= */
+#screen-result{background:#faf8f4}
+.result-wrap{max-width:720px;margin:0 auto;padding:0 24px 80px}
+.result-hero{padding:48px 0 40px;text-align:center}
+.result-label{font-size:11px;letter-spacing:.2em;color:#8a9e8a;margin-bottom:20px;text-transform:uppercase}
+.result-emoji{font-size:48px;margin-bottom:16px;display:block}
+.result-type-name{font-family:'Noto Serif JP',serif;font-size:clamp(22px,5vw,32px);font-weight:600;color:#1a2e1a;margin-bottom:16px;line-height:1.4}
+.result-catch{font-size:15px;color:#5a7a5a;line-height:1.8;font-style:italic;padding:0 16px}
+.result-divider{height:1px;background:#e8e4df;margin:40px 0}
+
+.card{background:#fff;border:1px solid #e8e4df;padding:28px;margin-bottom:16px}
+.card-label{font-size:10px;letter-spacing:.2em;color:#aaa;text-transform:uppercase;margin-bottom:12px}
+.card-title{font-family:'Noto Serif JP',serif;font-size:17px;font-weight:600;color:#1a2e1a;margin-bottom:16px;line-height:1.6}
+.card-text{font-size:14px;line-height:2;color:#555}
+
+.knowledge-box{background:#f4f9f4;border-left:3px solid #5a7a5a;padding:20px 20px 20px 24px;margin-top:12px}
+.knowledge-box p{font-size:13px;line-height:2;color:#444}
+.knowledge-label{font-size:10px;letter-spacing:.15em;color:#5a7a5a;margin-bottom:8px;font-weight:600;text-transform:uppercase}
+
+.work-box{background:#fffbf5;border:1px solid #f0e6d0;padding:20px 24px;margin-top:12px}
+.work-label{font-size:10px;letter-spacing:.15em;color:#b8860b;margin-bottom:8px;font-weight:600;text-transform:uppercase}
+.work-box p{font-size:13px;line-height:2;color:#555}
+
+.intro-box{background:#f0f7f0;padding:24px;margin-bottom:24px;border:1px solid #d4e8d4}
+.intro-box p{font-size:14px;line-height:2.2;color:#2d5a2d}
+
+.cta-area{margin-top:32px}
+.cta-title{font-family:'Noto Serif JP',serif;font-size:18px;color:#1a2e1a;margin-bottom:8px;line-height:1.6}
+.cta-desc{font-size:13px;color:#888;line-height:1.8;margin-bottom:24px}
+.btn-line{display:flex;align-items:center;justify-content:center;gap:10px;background:#06c755;color:#fff;font-size:15px;font-weight:700;padding:18px;text-decoration:none;font-family:inherit;transition:all .2s;margin-bottom:12px}
+.btn-line:hover{background:#05a847;transform:translateY(-1px)}
+.btn-restart{display:block;width:100%;background:none;border:1.5px solid #e8e4df;padding:14px;font-size:13px;color:#888;cursor:pointer;font-family:inherit;transition:all .2s}
+.btn-restart:hover{border-color:#aaa;color:#555}
+
+.share-area{margin-top:24px}
+.share-label{font-size:11px;color:#aaa;text-align:center;margin-bottom:12px;letter-spacing:.1em}
+.share-btns{display:flex;gap:10px}
+.btn-share{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;font-size:12px;font-family:inherit;cursor:pointer;text-decoration:none;border:1.5px solid #e8e4df;background:#fff;color:#555;transition:all .2s}
+.btn-share:hover{border-color:#aaa;background:#f9f9f9}
+
+.story-box{background:#fdf8f0;border:1px solid #f0e6d0;padding:24px}
+.story-label{font-size:10px;letter-spacing:.15em;color:#b8860b;margin-bottom:16px;font-weight:600;text-transform:uppercase}
+.story-text{font-size:13px;line-height:2.2;color:#555;font-style:italic}
+.story-sig{font-size:12px;color:#aaa;margin-top:16px}
+
+@media(max-width:480px){
+  .start-wrap,.quiz-body,.result-wrap{padding-left:20px;padding-right:20px}
+  .type-preview{grid-template-columns:1fr}
+  .opt-btn{padding:16px 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- START -->
+<div class="screen active" id="screen-start">
+  <div class="start-deco"></div>
+  <div class="start-deco2"></div>
+  <div class="start-wrap">
+    <div class="logo">✦ ゆり｜保健の授業の伏線回収</div>
+    <div class="start-tag">無料診断 · 登録不要 · 約2分</div>
+    <h1 class="start-title">あなたの人生の<br><span>伏線</span>は、<br>どこから始まる？</h1>
+    <p class="start-desc">「私が悪いわけじゃなかった」——<br>元保健体育教諭16年の知識で、あなたのモヤモヤに名前をつけます。<br>6つの質問から、あなたの「再授業タイプ」がわかります。</p>
+    <div class="start-meta">
+      <span>📝 6問</span>
+      <span>⏱ 約2分</span>
+      <span>🔒 個人情報の入力なし</span>
+    </div>
+    <button class="btn-start" id="btn-start">
+      診断を始める
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="type-preview">
+      <div class="type-chip"><strong>🌿 体と感情タイプ</strong>体が先に正直だった</div>
+      <div class="type-chip"><strong>🌸 家族と自分時間タイプ</strong>自分の時間がなかった</div>
+      <div class="type-chip"><strong>✨ 役割と自分軸タイプ</strong>役割の外の「私」を探してた</div>
+      <div class="type-chip"><strong>🌱 お金とこれからタイプ</strong>選択肢を増やしたかった</div>
+    </div>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div class="screen" id="screen-quiz">
+  <div class="quiz-header">
+    <div class="quiz-num"><strong id="q-current">1</strong> / 6</div>
+    <button class="btn-back" id="btn-back">← 前の問いへ</button>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:16.6%"></div></div>
+  <div class="quiz-body">
+    <div class="q-label">Question <span id="q-num">01</span></div>
+    <div class="q-text" id="q-text"></div>
+    <div class="q-hint">直感で選んでください</div>
+    <div class="options" id="options"></div>
+  </div>
+</div>
+
+<!-- LOADING -->
+<div class="screen" id="screen-loading">
+  <div class="loading-wrap">
+    <div class="loading-circle"></div>
+    <p class="loading-txt">あなたのタイプを<br>読み解いています...</p>
+  </div>
+</div>
+
+<!-- RESULT -->
+<div class="screen" id="screen-result">
+  <div class="result-wrap">
+    <div class="result-hero">
+      <div class="result-label">あなたの再授業タイプ</div>
+      <span class="result-emoji" id="r-emoji"></span>
+      <div class="result-type-name" id="r-name"></div>
+      <div class="result-catch" id="r-catch"></div>
+    </div>
+
+    <div class="intro-box">
+      <p>このモヤモヤは、あなたの性格の問題でも、努力不足でもありません。<br>体・心・家族・役割などの<strong>負荷が重なったサイン</strong>です。<br>この診断結果を、自分を責めるための材料にしないでください。</p>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Type Description</div>
+      <div class="card-title" id="r-title"></div>
+      <div class="card-text" id="r-desc"></div>
+      <div class="knowledge-box">
+        <div class="knowledge-label">✦ 元保健教諭からの知識</div>
+        <p id="r-knowledge"></p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">First Step · 今すぐできるワーク</div>
+      <div class="card-title">解決しようとする前に、まず「分ける」だけでいい。</div>
+      <div class="work-box">
+        <div class="work-label">📝 今日のワーク</div>
+        <p id="r-work"></p>
+      </div>
+    </div>
+
+    <div class="card story-box">
+      <div class="story-label">✦ ゆりのストーリー</div>
+      <p class="story-text">全国大会に出るエリート教師だった私にも、人生に悩んで精神科に通った時期がありました。「先生なのに」という自己嫌悪。でもその経験があったから、保健の授業が「生きる知識」として腑に落ちた。<br><br>「母」「妻」「先生」——どれも私が担ってきた役割です。でもそのどれも、「私そのもの」ではなかった。それに気づいたのが、私自身の伏線回収でした。</p>
+      <div class="story-sig">— 村上ゆり（元保健体育教諭16年）</div>
+    </div>
+
+    <div class="result-divider"></div>
+
+    <div class="cta-area">
+      <div class="cta-title">診断結果について、<br>ゆりから個別にメッセージを届けます。</div>
+      <div class="cta-desc">LINEを登録すると、あなたのタイプに合わせた「最初の一歩」を<br>ゆり本人がお届けします。（無料・いつでも解除OK）</div>
+      <a class="btn-line" href="https://line.me/R/ti/p/%40708snizp" id="btn-line" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.03 2 11c0 2.84 1.38 5.37 3.56 7.1L4.5 22l3.42-1.8C9.2 20.7 10.57 21 12 21c5.52 0 10-4.03 10-9S17.52 2 12 2z"/></svg>
+        LINE登録で診断結果を受け取る（無料）
+      </a>
+      <button class="btn-restart" id="btn-restart">もう一度診断する</button>
+    </div>
+
+    <div class="share-area">
+      <div class="share-label">シェアする</div>
+      <div class="share-btns">
+        <a class="btn-share" id="btn-x" href="#" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.63L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+          X でシェア
+        </a>
+        <a class="btn-share" id="btn-line-share" href="#" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.03 2 11c0 2.84 1.38 5.37 3.56 7.1L4.5 22l3.42-1.8C9.2 20.7 10.57 21 12 21c5.52 0 10-4.03 10-9S17.52 2 12 2z"/></svg>
+          LINE でシェア
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const TYPES = {
+  A:{
+    name:'体と感情の再授業タイプ',
+    emoji:'🌿',
+    catch:'体が先に、あなたの本音を知っていた。',
+    title:'感情と体のサインを読み直すことが、変化のスタートになるタイプ',
+    desc:'イライラ、涙、疲れ、肩こり——それは「ダメな自分」のサインではありません。体と感情は、あなたが無視してきた声を届けようとしているだけ。元保健教諭として断言します。あなたは悪くない。体が限界を教えてくれているんです。',
+    knowledge:'「ダークな色眼鏡」の法則：エネルギーが低いとき、脳は正しい判断ができない状態になります。「またやってしまった」と思う瞬間は、あなたの性格の問題ではなく、体が疲れているサイン。感情は敵ではなく、体からあなたへの「手紙」です。感情に気づいてあげることが、体を整える最初の一歩。',
+    work:'最近イライラした場面を1つだけ思い出して、「何に疲れていたか」「何を抱えすぎていたか」「本当は何をわかってほしかったのか」を紙に書いてみてください。解決しなくていい。ただ「分ける」だけで、体が少し楽になります。'
+  },
+  B:{
+    name:'家族と自分時間の再授業タイプ',
+    emoji:'🌸',
+    catch:'自分のために時間を使っていいと、まだ思えていない。',
+    title:'「自分の時間を持っていい」と体で知ることが、次の扉を開けるタイプ',
+    desc:'洗剤の補充、家族の予定管理、気づかいの言葉——あなたがやっていることには名前がない。でも確実に誰かを支えている。「私が我慢すればいい」と言い続けてきたあなたへ。それは美徳ではなく、消耗のサインです。',
+    knowledge:'「見えない労働」の正体：家事・育児には「実作業」以外に膨大な管理業務があります。予定調整・気づかい・心配……これが疲れの本当の原因です。境界線は「冷たさ」ではありません。良い関係を長く続けるための「自分を守る線」です。自分を守ることが、家族を守ることにつながる。',
+    work:'今週の予定表を開いて、「自分のための15分」を予約として書き込んでください。何をするかは後で決めていい。まず「自分の時間」という場所を確保すること。それだけでいい。'
+  },
+  C:{
+    name:'役割と自分軸の再授業タイプ',
+    emoji:'✨',
+    catch:'「母」「妻」の外に、まだ名前のない私がいる。',
+    title:'役割ではない「私」の声を見つけることが、人生後半の出発点になるタイプ',
+    desc:'同世代の活躍を見て焦る。「私なんてもう遅い」と思う。そのモヤモヤは弱さじゃない。あなたの中に「本当はやりたいこと」が残っている証拠です。「母」「妻」はあなたが担っている役割であって、あなたそのものではない。',
+    knowledge:'嫉妬は「願いのサイン」：同世代の活躍に焦りを感じるとき、それはあなたの内側に「本当はそれをやりたかった」という声が残っている証拠です。「平均値の罠」にも注意を。世間の「普通」は架空の基準。あなたのペースで始めることが、一番長く続けられる。',
+    work:'今のあなたが担っている役割をすべて書き出してください。そしてその役割ごとに「助けられたこと」と「苦しくなったこと」を一つずつ書く。責めなくていい。ただ「見る」だけ。'
+  },
+  D:{
+    name:'お金とこれからの再授業タイプ',
+    emoji:'🌱',
+    catch:'お金の不安の正体は、「選択肢を失うこと」への恐れだった。',
+    title:'人生後半の選択肢を増やすことが、不安を希望に変えるカギになるタイプ',
+    desc:'通帳を見るたびに不安になる。老後のことを考えると眠れない。でも本当に怖いのは「金額」ではなく、「将来、自分で選べなくなること」かもしれません。あなたが今まで人の役に立ってきたこと——それがあなたの本当の「資産」です。',
+    knowledge:'不安を5つに分けると見えてくる：お金の不安は「金額・仕事・家族・老後・自由」の5種類に分けられます。どれが一番怖いかを知るだけで、行動の方向が見えてきます。自己決定の力こそが、人生の質（QOL）を高める最大の保健知識です。',
+    work:'これまで人の役に立ってきたこと（家族への貢献、仕事の実績、誰かに感謝されたこと）を10個書き出してください。思い出せないなら5個でもOK。あなたには「すでに資産がある」ことを体で知るワークです。'
+  }
+};
+
+const QUESTIONS = [
+  {
+    text:'今、いちばんモヤモヤしていることはどれですか？',
+    opts:[
+      {label:'体や感情の波（急にイライラ・涙・疲れ）',type:'A'},
+      {label:'家族や自分時間（自分の時間がない）',type:'B'},
+      {label:'役割や自分軸（妻・母だけで終わる気がする）',type:'C'},
+      {label:'お金や働き方（人生後半が不安）',type:'D'}
+    ]
+  },
+  {
+    text:'夜や一人時間に、ふと浮かびやすい言葉は？',
+    opts:[
+      {label:'また怒ってしまった。私ってダメなのかな',type:'A'},
+      {label:'今日も自分のこと、何もできなかった',type:'B'},
+      {label:'私の人生、このままで終わるのかな',type:'C'},
+      {label:'この先、お金や仕事は大丈夫なのかな',type:'D'}
+    ]
+  },
+  {
+    text:'最近、いちばんしんどい場面に近いものは？',
+    opts:[
+      {label:'家族にきつく言ったあと自己嫌悪になる時',type:'A'},
+      {label:'自分の予定を入れようとすると罪悪感が出る時',type:'B'},
+      {label:'同世代の活躍を見て焦りや嫉妬が出る時',type:'C'},
+      {label:'通帳・家計・老後・仕事を考える時',type:'D'}
+    ]
+  },
+  {
+    text:'あなたが本当はほしい感覚に近いものは？',
+    opts:[
+      {label:'感情に振り回されず安心して過ごしたい',type:'A'},
+      {label:'自分の時間を持ってもいいと思いたい',type:'B'},
+      {label:'役割の外にある「私」を取り戻したい',type:'C'},
+      {label:'人生後半の選択肢を増やしたい',type:'D'}
+    ]
+  },
+  {
+    text:'つい自分に言ってしまう言葉は？',
+    opts:[
+      {label:'また怒ってしまった。私が悪い',type:'A'},
+      {label:'私が我慢すればいい',type:'B'},
+      {label:'私なんて、もう遅い',type:'C'},
+      {label:'私には何もできないかもしれない',type:'D'}
+    ]
+  },
+  {
+    text:'今のあなたに一番必要そうなことは？',
+    opts:[
+      {label:'体と感情のサインを読み直すこと',type:'A'},
+      {label:'自分の時間と境界線を取り戻すこと',type:'B'},
+      {label:'役割ではない自分の声を見つけること',type:'C'},
+      {label:'お金と働き方の不安を整理すること',type:'D'}
+    ]
+  }
+];
+
+let current = 0;
+let answers = [];
+
+function show(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function renderQuestion(){
+  const q = QUESTIONS[current];
+  document.getElementById('q-current').textContent = current + 1;
+  document.getElementById('q-num').textContent = String(current+1).padStart(2,'0');
+  document.getElementById('q-text').textContent = q.text;
+  document.getElementById('progress-fill').style.width = ((current+1)/QUESTIONS.length*100)+'%';
+  document.getElementById('btn-back').style.visibility = current === 0 ? 'hidden' : 'visible';
+
+  const opts = document.getElementById('options');
+  opts.innerHTML = '';
+  const keys = ['A','B','C','D'];
+  q.opts.forEach((o,i)=>{
+    const btn = document.createElement('button');
+    btn.className = 'opt-btn';
+    btn.innerHTML = `<span class="opt-inner"><span class="opt-key">${keys[i]}</span>${o.label}</span>`;
+    btn.onclick = () => choose(o.type, btn);
+    opts.appendChild(btn);
+  });
+}
+
+function choose(type, btn){
+  document.querySelectorAll('.opt-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  answers[current] = type;
+  setTimeout(()=>{
+    if(current < QUESTIONS.length - 1){
+      current++;
+      renderQuestion();
+    } else {
+      finish();
+    }
+  }, 220);
+}
+
+function finish(){
+  show('screen-loading');
+  const scores = {A:0,B:0,C:0,D:0};
+  answers.forEach(t=>{ if(t) scores[t]++; });
+  const winner = Object.entries(scores).sort((a,b)=>b[1]-a[1])[0][0];
+  setTimeout(()=>renderResult(winner), 1800);
+}
+
+function renderResult(key){
+  const t = TYPES[key];
+  document.getElementById('r-emoji').textContent = t.emoji;
+  document.getElementById('r-name').textContent = t.name;
+  document.getElementById('r-catch').textContent = t.catch;
+  document.getElementById('r-title').textContent = t.title;
+  document.getElementById('r-desc').textContent = t.desc;
+  document.getElementById('r-knowledge').textContent = t.knowledge;
+  document.getElementById('r-work').textContent = t.work;
+
+  const url = 'https://yuri-hoken.com/shindan';
+  const shareText = `私の再授業タイプは「${t.name}」でした！\n${t.catch}\n#再授業タイプ診断 #保健の授業の伏線回収`;
+  document.getElementById('btn-x').href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(url)}`;
+  document.getElementById('btn-line-share').href = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(url)}&text=${encodeURIComponent(shareText)}`;
+
+  show('screen-result');
+}
+
+function reset(){
+  current = 0;
+  answers = [];
+  renderQuestion();
+  show('screen-quiz');
+}
+
+document.getElementById('btn-start').onclick = ()=>{ renderQuestion(); show('screen-quiz'); };
+document.getElementById('btn-back').onclick = ()=>{ if(current>0){ current--; renderQuestion(); } };
+document.getElementById('btn-restart').onclick = ()=>{ reset(); show('screen-start'); };
+</script>
+</body>
+</html>
