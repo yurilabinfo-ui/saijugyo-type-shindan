@@ -8,86 +8,87 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600;700&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Noto Sans JP',sans-serif;background:#faf8f4;color:#2c2c2c;min-height:100vh}
+body{font-family:'Noto Sans JP',sans-serif;background:#fffaf7;color:#2c2c2c;min-height:100vh}
 .screen{display:none;min-height:100vh}
 .screen.active{display:block}
 
 /* ======= START ======= */
-#screen-start{background:#faf8f4}
+#screen-start{background:#fffaf7}
 .start-wrap{max-width:720px;margin:0 auto;padding:48px 24px 80px}
-.logo{font-family:'Noto Serif JP',serif;font-size:13px;color:#5a7a5a;letter-spacing:.15em;margin-bottom:48px}
-.start-tag{font-size:11px;letter-spacing:.2em;color:#8a9e8a;margin-bottom:20px;text-transform:uppercase}
-.start-title{font-family:'Noto Serif JP',serif;font-size:clamp(28px,6vw,44px);font-weight:600;line-height:1.4;color:#1a2e1a;margin-bottom:24px}
-.start-title span{color:#5a7a5a}
+.start-illust{text-align:center;margin-bottom:8px}
+.logo{font-family:'Noto Serif JP',serif;font-size:13px;color:#e8673a;letter-spacing:.15em;margin-bottom:48px}
+.start-tag{font-size:11px;letter-spacing:.2em;color:#f0a070;margin-bottom:20px;text-transform:uppercase}
+.start-title{font-family:'Noto Serif JP',serif;font-size:clamp(28px,6vw,44px);font-weight:600;line-height:1.4;color:#3d1a08;margin-bottom:24px}
+.start-title span{color:#e8673a}
 .start-desc{font-size:15px;line-height:2;color:#555;margin-bottom:40px;max-width:520px}
-.start-meta{display:flex;gap:24px;font-size:12px;color:#8a9e8a;margin-bottom:48px;flex-wrap:wrap}
+.start-meta{display:flex;gap:24px;font-size:12px;color:#f0a070;margin-bottom:48px;flex-wrap:wrap}
 .start-meta span{display:flex;align-items:center;gap:6px}
-.btn-start{display:inline-flex;align-items:center;gap:12px;background:#2d5a2d;color:#fff;font-size:16px;font-weight:500;padding:18px 40px;border:none;cursor:pointer;font-family:inherit;transition:all .2s;letter-spacing:.05em}
-.btn-start:hover{background:#1a3d1a;transform:translateY(-1px)}
+.btn-start{display:inline-flex;align-items:center;gap:12px;background:#e8673a;color:#fff;font-size:16px;font-weight:500;padding:18px 40px;border:none;cursor:pointer;font-family:inherit;transition:all .2s;letter-spacing:.05em}
+.btn-start:hover{background:#c44e26;transform:translateY(-1px)}
 .btn-start svg{transition:transform .2s}
 .btn-start:hover svg{transform:translateX(4px)}
-.start-deco{position:fixed;top:-60px;right:-60px;width:280px;height:280px;border-radius:50%;background:rgba(90,122,90,.08);pointer-events:none}
-.start-deco2{position:fixed;bottom:-80px;left:-40px;width:200px;height:200px;border-radius:50%;background:rgba(212,165,116,.1);pointer-events:none}
+.start-deco{position:fixed;top:-60px;right:-60px;width:280px;height:280px;border-radius:50%;background:rgba(232,103,58,.1);pointer-events:none}
+.start-deco2{position:fixed;bottom:-80px;left:-40px;width:200px;height:200px;border-radius:50%;background:rgba(255,180,100,.2);pointer-events:none}
 .type-preview{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:48px;max-width:480px}
 .type-chip{background:#fff;border:1px solid #e8e4df;padding:12px 16px;font-size:12px;color:#666;line-height:1.5}
 .type-chip strong{display:block;font-size:13px;color:#2c2c2c;margin-bottom:4px}
 
 /* ======= QUIZ ======= */
-#screen-quiz{background:#faf8f4}
+#screen-quiz{background:#fffaf7}
 .quiz-header{padding:20px 24px 0;max-width:720px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
-.quiz-num{font-family:'Noto Serif JP',serif;font-size:13px;color:#8a9e8a}
-.quiz-num strong{color:#2d5a2d;font-size:18px}
+.quiz-num{font-family:'Noto Serif JP',serif;font-size:13px;color:#f0a070}
+.quiz-num strong{color:#e8673a;font-size:18px}
 .btn-back{background:none;border:none;cursor:pointer;font-size:12px;color:#aaa;font-family:inherit;padding:4px 0}
 .btn-back:hover{color:#666}
 .progress-bar{height:2px;background:#e8e4df;margin:16px 24px 0;max-width:calc(720px - 48px);margin-left:auto;margin-right:auto}
-.progress-fill{height:100%;background:#2d5a2d;transition:width .4s ease}
+.progress-fill{height:100%;background:#e8673a;transition:width .4s ease}
 .quiz-body{max-width:720px;margin:0 auto;padding:60px 24px 80px}
-.q-label{font-size:11px;letter-spacing:.2em;color:#8a9e8a;margin-bottom:20px;text-transform:uppercase}
-.q-text{font-family:'Noto Serif JP',serif;font-size:clamp(20px,4vw,28px);font-weight:400;line-height:1.7;color:#1a2e1a;margin-bottom:12px}
+.q-label{font-size:11px;letter-spacing:.2em;color:#f0a070;margin-bottom:20px;text-transform:uppercase}
+.q-text{font-family:'Noto Serif JP',serif;font-size:clamp(20px,4vw,28px);font-weight:400;line-height:1.7;color:#3d1a08;margin-bottom:12px}
 .q-hint{font-size:12px;color:#aaa;margin-bottom:48px}
 .options{display:flex;flex-direction:column;gap:12px}
 .opt-btn{text-align:left;background:#fff;border:1.5px solid #e8e4df;padding:18px 24px;cursor:pointer;font-family:inherit;font-size:15px;color:#333;line-height:1.6;transition:all .2s;position:relative}
-.opt-btn:hover{border-color:#5a7a5a;background:#f4f9f4;transform:translateX(4px)}
-.opt-btn.selected{border-color:#2d5a2d;background:#f0f7f0;color:#1a2e1a}
+.opt-btn:hover{border-color:#e8673a;background:#fff3ee;transform:translateX(4px)}
+.opt-btn.selected{border-color:#e8673a;background:#fff0e8;color:#3d1a08}
 .opt-btn .opt-key{display:inline-block;width:24px;height:24px;border:1.5px solid currentColor;border-radius:50%;font-size:11px;font-weight:600;text-align:center;line-height:22px;margin-right:12px;color:#aaa;transition:all .2s;flex-shrink:0}
-.opt-btn:hover .opt-key,.opt-btn.selected .opt-key{color:#2d5a2d;border-color:#2d5a2d}
+.opt-btn:hover .opt-key,.opt-btn.selected .opt-key{color:#e8673a;border-color:#e8673a}
 .opt-inner{display:flex;align-items:flex-start}
 
 /* ======= LOADING ======= */
-#screen-loading.active{display:flex;align-items:center;justify-content:center;background:#faf8f4}
+#screen-loading.active{display:flex;align-items:center;justify-content:center;background:#fffaf7}
 .loading-wrap{text-align:center;padding:40px}
-.loading-circle{width:60px;height:60px;border:2px solid #e8e4df;border-top-color:#2d5a2d;border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 32px}
+.loading-circle{width:60px;height:60px;border:2px solid #e8e4df;border-top-color:#e8673a;border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 32px}
 @keyframes spin{to{transform:rotate(360deg)}}
-.loading-txt{font-family:'Noto Serif JP',serif;font-size:16px;color:#5a7a5a;line-height:2}
+.loading-txt{font-family:'Noto Serif JP',serif;font-size:16px;color:#e8673a;line-height:2}
 
 /* ======= RESULT ======= */
-#screen-result{background:#faf8f4}
+#screen-result{background:#fffaf7}
 .result-wrap{max-width:720px;margin:0 auto;padding:0 24px 80px}
 .result-hero{padding:48px 0 40px;text-align:center}
-.result-label{font-size:11px;letter-spacing:.2em;color:#8a9e8a;margin-bottom:20px;text-transform:uppercase}
+.result-label{font-size:11px;letter-spacing:.2em;color:#f0a070;margin-bottom:20px;text-transform:uppercase}
 .result-emoji{font-size:48px;margin-bottom:16px;display:block}
-.result-type-name{font-family:'Noto Serif JP',serif;font-size:clamp(22px,5vw,32px);font-weight:600;color:#1a2e1a;margin-bottom:16px;line-height:1.4}
-.result-catch{font-size:15px;color:#5a7a5a;line-height:1.8;font-style:italic;padding:0 16px}
+.result-type-name{font-family:'Noto Serif JP',serif;font-size:clamp(22px,5vw,32px);font-weight:600;color:#3d1a08;margin-bottom:16px;line-height:1.4}
+.result-catch{font-size:15px;color:#e8673a;line-height:1.8;font-style:italic;padding:0 16px}
 .result-divider{height:1px;background:#e8e4df;margin:40px 0}
 
 .card{background:#fff;border:1px solid #e8e4df;padding:28px;margin-bottom:16px}
 .card-label{font-size:10px;letter-spacing:.2em;color:#aaa;text-transform:uppercase;margin-bottom:12px}
-.card-title{font-family:'Noto Serif JP',serif;font-size:17px;font-weight:600;color:#1a2e1a;margin-bottom:16px;line-height:1.6}
+.card-title{font-family:'Noto Serif JP',serif;font-size:17px;font-weight:600;color:#3d1a08;margin-bottom:16px;line-height:1.6}
 .card-text{font-size:14px;line-height:2;color:#555}
 
-.knowledge-box{background:#f4f9f4;border-left:3px solid #5a7a5a;padding:20px 20px 20px 24px;margin-top:12px}
+.knowledge-box{background:#fff3ee;border-left:3px solid #e8673a;padding:20px 20px 20px 24px;margin-top:12px}
 .knowledge-box p{font-size:13px;line-height:2;color:#444}
-.knowledge-label{font-size:10px;letter-spacing:.15em;color:#5a7a5a;margin-bottom:8px;font-weight:600;text-transform:uppercase}
+.knowledge-label{font-size:10px;letter-spacing:.15em;color:#e8673a;margin-bottom:8px;font-weight:600;text-transform:uppercase}
 
 .work-box{background:#fffbf5;border:1px solid #f0e6d0;padding:20px 24px;margin-top:12px}
 .work-label{font-size:10px;letter-spacing:.15em;color:#b8860b;margin-bottom:8px;font-weight:600;text-transform:uppercase}
 .work-box p{font-size:13px;line-height:2;color:#555}
 
-.intro-box{background:#f0f7f0;padding:24px;margin-bottom:24px;border:1px solid #d4e8d4}
-.intro-box p{font-size:14px;line-height:2.2;color:#2d5a2d}
+.intro-box{background:#fff0e8;padding:24px;margin-bottom:24px;border:1px solid #ffd0b0}
+.intro-box p{font-size:14px;line-height:2.2;color:#e8673a}
 
 .cta-area{margin-top:32px}
-.cta-title{font-family:'Noto Serif JP',serif;font-size:18px;color:#1a2e1a;margin-bottom:8px;line-height:1.6}
+.cta-title{font-family:'Noto Serif JP',serif;font-size:18px;color:#3d1a08;margin-bottom:8px;line-height:1.6}
 .cta-desc{font-size:13px;color:#888;line-height:1.8;margin-bottom:24px}
 .btn-line{display:flex;align-items:center;justify-content:center;gap:10px;background:#06c755;color:#fff;font-size:15px;font-weight:700;padding:18px;text-decoration:none;font-family:inherit;transition:all .2s;margin-bottom:12px}
 .btn-line:hover{background:#05a847;transform:translateY(-1px)}
@@ -119,6 +120,47 @@ body{font-family:'Noto Sans JP',sans-serif;background:#faf8f4;color:#2c2c2c;min-
   <div class="start-deco"></div>
   <div class="start-deco2"></div>
   <div class="start-wrap">
+    <div class="start-illust">
+      <svg width="260" height="180" viewBox="0 0 260 180" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <!-- 大きな花 -->
+        <ellipse cx="130" cy="90" rx="18" ry="18" fill="#ffe0cc"/>
+        <ellipse cx="130" cy="62" rx="12" ry="20" fill="#ffcaaa" opacity=".8"/>
+        <ellipse cx="130" cy="118" rx="12" ry="20" fill="#ffcaaa" opacity=".8"/>
+        <ellipse cx="102" cy="90" rx="20" ry="12" fill="#ffcaaa" opacity=".8"/>
+        <ellipse cx="158" cy="90" rx="20" ry="12" fill="#ffcaaa" opacity=".8"/>
+        <ellipse cx="111" cy="71" rx="12" ry="20" fill="#ffd8c0" opacity=".7" transform="rotate(-45 111 71)"/>
+        <ellipse cx="149" cy="71" rx="12" ry="20" fill="#ffd8c0" opacity=".7" transform="rotate(45 149 71)"/>
+        <ellipse cx="111" cy="109" rx="12" ry="20" fill="#ffd8c0" opacity=".7" transform="rotate(45 111 109)"/>
+        <ellipse cx="149" cy="109" rx="12" ry="20" fill="#ffd8c0" opacity=".7" transform="rotate(-45 149 109)"/>
+        <circle cx="130" cy="90" r="12" fill="#e8673a"/>
+        <!-- 茎と葉 -->
+        <path d="M130 108 Q128 135 125 155" stroke="#d4855a" stroke-width="2" stroke-linecap="round"/>
+        <path d="M127 130 Q112 125 108 115" stroke="#d4855a" stroke-width="1.5" stroke-linecap="round"/>
+        <ellipse cx="108" cy="115" rx="10" ry="6" fill="#f0a070" opacity=".6" transform="rotate(-30 108 115)"/>
+        <path d="M126 142 Q140 138 145 128" stroke="#d4855a" stroke-width="1.5" stroke-linecap="round"/>
+        <ellipse cx="145" cy="128" rx="10" ry="6" fill="#f0a070" opacity=".6" transform="rotate(30 145 128)"/>
+        <!-- 小さな花・左 -->
+        <circle cx="60" cy="70" r="7" fill="#ffcaaa"/>
+        <ellipse cx="60" cy="52" rx="6" ry="10" fill="#ffd8c0" opacity=".7"/>
+        <ellipse cx="60" cy="88" rx="6" ry="10" fill="#ffd8c0" opacity=".7"/>
+        <ellipse cx="42" cy="70" rx="10" ry="6" fill="#ffd8c0" opacity=".7"/>
+        <ellipse cx="78" cy="70" rx="10" ry="6" fill="#ffd8c0" opacity=".7"/>
+        <circle cx="60" cy="70" r="5" fill="#e8673a"/>
+        <!-- 小さな花・右 -->
+        <circle cx="200" cy="55" r="6" fill="#ffcaaa"/>
+        <ellipse cx="200" cy="40" rx="5" ry="9" fill="#ffd8c0" opacity=".7"/>
+        <ellipse cx="200" cy="70" rx="5" ry="9" fill="#ffd8c0" opacity=".7"/>
+        <ellipse cx="185" cy="55" rx="9" ry="5" fill="#ffd8c0" opacity=".7"/>
+        <ellipse cx="215" cy="55" rx="9" ry="5" fill="#ffd8c0" opacity=".7"/>
+        <circle cx="200" cy="55" r="4" fill="#e8673a"/>
+        <!-- ドット装飾 -->
+        <circle cx="40" cy="130" r="4" fill="#f0a070" opacity=".5"/>
+        <circle cx="55" cy="148" r="3" fill="#ffcaaa" opacity=".6"/>
+        <circle cx="215" cy="130" r="5" fill="#f0a070" opacity=".4"/>
+        <circle cx="230" cy="110" r="3" fill="#ffcaaa" opacity=".5"/>
+        <circle cx="80" cy="155" r="3" fill="#ffd8c0" opacity=".6"/>
+      </svg>
+    </div>
     <div class="logo">✦ ゆり｜保健の授業の伏線回収</div>
     <div class="start-tag">無料診断 · 登録不要 · 約2分</div>
     <h1 class="start-title">あなたの人生の<br><span>伏線回収</span>は、<br>どこから始まる？</h1>
