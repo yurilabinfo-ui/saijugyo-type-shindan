@@ -406,9 +406,7 @@ function finish(){
   const winner = Object.entries(scores).sort((a,b)=>b[1]-a[1])[0][0];
 
   // GASにログ送信（エラーが出ても診断は続行）
-  const logUrl = GAS_URL + '?type=' + encodeURIComponent(winner) + '&a=' + encodeURIComponent(answers.join(','));
-  console.log('GAS送信URL:', logUrl);
-  new Image().src = logUrl;
+  new Image().src = GAS_URL + '?type=' + encodeURIComponent(winner) + '&a=' + encodeURIComponent(answers.join(','));
 
   setTimeout(()=>renderResult(winner), 1800);
 }
