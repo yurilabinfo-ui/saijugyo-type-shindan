@@ -352,15 +352,6 @@ const QUESTIONS = [
       {label:'どうせ私には何もできない',type:'D'}
     ]
   },
-  {
-    text:'今のあなたに一番必要そうなことは？',
-    opts:[
-      {label:'体と感情のサインに気づいてあげる',type:'A'},
-      {label:'自分の時間と家族の時間の境界線を取り戻すこと',type:'B'},
-      {label:'自分は素敵だと思える自分になる',type:'C'},
-      {label:'お金と働き方の不安を整理する',type:'D'}
-    ]
-  }
 ];
 
 let current = 0;
@@ -406,11 +397,24 @@ function choose(type, btn){
   }, 220);
 }
 
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbxYLRczcaEdJCT5NxgaTQLQCJeLT_0NRprHr9ueOyJQoWQK2seKB8d3LSSGg59eUoOSRQ/exec'; // デプロイ後にここを書き換える
+
 function finish(){
   show('screen-loading');
   const scores = {A:0,B:0,C:0,D:0};
   answers.forEach(t=>{ if(t) scores[t]++; });
   const winner = Object.entries(scores).sort((a,b)=>b[1]-a[1])[0][0];
+
+  // GASにログ送信（エラーが出ても診断は続行）
+  if(GAS_URL !== 'https://script.google.com/macros/s/AKfycbxYLRczcaEdJCT5NxgaTQLQCJeLT_0NRprHr9ueOyJQoWQK2seKB8d3LSSGg59eUoOSRQ/exec'){
+    fetch(GAS_URL, {
+      method:'POST',
+      mode:'no-cors',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ type: winner, answers: answers })
+    }).catch(()=>{});
+  }
+
   setTimeout(()=>renderResult(winner), 1800);
 }
 
