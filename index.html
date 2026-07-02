@@ -406,14 +406,7 @@ function finish(){
   const winner = Object.entries(scores).sort((a,b)=>b[1]-a[1])[0][0];
 
   // GASにログ送信（エラーが出ても診断は続行）
-  if(GAS_URL !== 'https://script.google.com/macros/s/AKfycbxYLRczcaEdJCT5NxgaTQLQCJeLT_0NRprHr9ueOyJQoWQK2seKB8d3LSSGg59eUoOSRQ/exec'){
-    fetch(GAS_URL, {
-      method:'POST',
-      mode:'no-cors',
-      headers:{'Content-Type':'text/plain'},
-      body: JSON.stringify({ type: winner, answers: answers })
-    }).catch(()=>{});
-  }
+  new Image().src = GAS_URL + '?type=' + encodeURIComponent(winner) + '&a=' + encodeURIComponent(answers.join(','));
 
   setTimeout(()=>renderResult(winner), 1800);
 }
